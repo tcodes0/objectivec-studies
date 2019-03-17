@@ -25,6 +25,7 @@
     [self.mylabel setFont:[UIFont fontWithName:@"Futura" size:30]];
     self.mylabel.adjustsFontSizeToFitWidth = YES;
     self.mylabel.layer.shadowColor = [[UIColor blackColor] CGColor];
+    //[self blur];
 }
 
 - (IBAction)mybutton:(id)sender {
@@ -65,15 +66,18 @@
 
 - (IBAction)sup:(id)sender {
     [self blur];
+    //[self test];
     //NSLog(@"%@", self.initialView);
-    //self.view.backgroundColor = [UIColor yellowColor];
+    //self.myView.backgroundColor = [UIColor yellowColor];
 }
 
 - (void)blur{
     if (self.initialView == nil) {
+        NSLog(@"%f", UIScreen.mainScreen.scale);
         //Get a UIImage from the UIView
-        UIGraphicsBeginImageContext(self.view.bounds.size);
-        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIGraphicsBeginImageContextWithOptions(self.myView.bounds.size, NO, UIScreen.mainScreen.scale);
+        //UIGraphicsBeginImageContext(self.myView.bounds.size);
+        [self.myView.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
         self.initialView = viewImage;
         UIGraphicsEndImageContext();
@@ -83,15 +87,24 @@
     CIImage *imageToBlur = [CIImage imageWithCGImage:self.initialView.CGImage];
     CIFilter *gaussianBlurFilter = [CIFilter filterWithName: @"CIGaussianBlur"];
     [gaussianBlurFilter setValue:imageToBlur forKey: @"inputImage"];
-    [gaussianBlurFilter setValue:[NSNumber numberWithFloat:10] forKey: @"inputRadius"];
+    //[gaussianBlurFilter setValue:[NSNumber numberWithFloat:10] forKey: @"inputRadius"];
     CIImage *resultImage = [gaussianBlurFilter valueForKey: @"outputImage"];
     UIImage *endImage = [[UIImage alloc] initWithCIImage:resultImage];
     
     //Place the UIImage in a UIImageView
-    UIImageView *newView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    UIImageView *newView = [[UIImageView alloc] initWithFrame:self.myView.bounds];
     newView.image = endImage;
     self.view = newView;
-    //[self.view addSubview:newView];
+    //[self.myView addSubview:newView];
+}
+
+- (void)test{
+    //Place the UIImage in a UIImageView
+    UIImageView *newView = [[UIImageView alloc] initWithFrame:self.myView.bounds];
+    newView.backgroundColor = [UIColor yellowColor];
+    //newView.image = endImage;
+    //self.myView = newView;
+    [self.myView addSubview:newView];
 }
 
 - (void)updateColor{
