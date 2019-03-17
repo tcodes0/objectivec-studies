@@ -86,11 +86,20 @@
                                     <action selector="handleAlpha:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WKg-V5-0wS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJ1-Gk-maM">
+                                <rect key="frame" x="175" y="392" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="sup"/>
+                                <connections>
+                                    <action selector="sup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qd1-Bw-oo7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="myView" destination="8bC-Xf-vdC" id="DKg-Rh-eOF"/>
                         <outlet property="myinput" destination="UWi-g4-jKt" id="DLF-ye-mqw"/>
                         <outlet property="mylabel" destination="bwr-KA-vDN" id="yuA-Fq-kMb"/>
                         <outlet property="mytextbox" destination="5Ez-CD-Ohw" id="QE1-Ss-7yD"/>

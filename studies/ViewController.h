@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+//To take advantage of CIFilters, you have to import the Core Image framework
+#import <CoreImage/CoreImage.h>
 
 @interface ViewController : UIViewController <UITextViewDelegate>
 
@@ -14,6 +16,7 @@
 @property CGFloat greenval;
 @property CGFloat blueval;
 @property CGFloat alpha;
+@property UIImage *initialView;
 
 @property (weak, nonatomic) IBOutlet UILabel *mylabel;
 @property (weak, nonatomic) IBOutlet UITextView *mytextbox;
@@ -24,5 +27,7 @@
 - (IBAction)handleGreen:(id)sender;
 - (IBAction)handleBlue:(id)sender;
 - (IBAction)handleAlpha:(id)sender;
+- (IBAction)sup:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *myView;
 
 @end
