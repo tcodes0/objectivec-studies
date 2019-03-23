@@ -88,15 +88,19 @@
     //Blur
     CIFilter *gaussianBlurFilter = [CIFilter filterWithName: @"CIGaussianBlur"];
     [gaussianBlurFilter setValue:imageToBlur forKey: @"inputImage"];
-    [gaussianBlurFilter setValue:[NSNumber numberWithFloat:10] forKey: @"inputRadius"];
+    [gaussianBlurFilter setValue:[NSNumber numberWithFloat:3] forKey: @"inputRadius"];
     CIImage *blurResult = [gaussianBlurFilter valueForKey: @"outputImage"];
 
     //Crop
     CIFilter *stretchFilter = [CIFilter filterWithName: @"CIStretchCrop"];
     [stretchFilter setValue:blurResult forKey: @"inputImage"];
-    [stretchFilter setValue:[CIVector vectorWithX:self.myView.frame.size.width * 2 Y:self.myView.frame.size.height  * 2] forKey:@"inputSize"];
+    [stretchFilter setValue:[CIVector
+                             vectorWithX:self.myView.frame.size.width Y:self.myView.frame.size.height
+                             ]
+                    forKey:@"inputSize"
+     ];
     // If the value is 0, the image is streched but not cropped
-    [stretchFilter setValue:[NSNumber numberWithFloat:0] forKey: @"inputCropAmount"];
+    [stretchFilter setValue:[NSNumber numberWithFloat:1] forKey: @"inputCropAmount"];
     // A value of 0 causes the center of the image to maintain its original aspect ratio
     [stretchFilter setValue:[NSNumber numberWithFloat:0] forKey: @"inputCenterStretchAmount"];
     CIImage *resultImage = [stretchFilter valueForKey: @"outputImage"];
