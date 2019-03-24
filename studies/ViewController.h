@@ -16,7 +16,7 @@
 @property CGFloat greenval;
 @property CGFloat blueval;
 @property CGFloat alpha;
-@property UIImage *initialView;
+@property UIImage *initialImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *mylabel;
 @property (weak, nonatomic) IBOutlet UITextView *mytextbox;
@@ -29,5 +29,12 @@
 - (IBAction)handleAlpha:(id)sender;
 - (IBAction)sup:(id)sender;
 @property (strong, nonatomic) IBOutlet UIView *myView;
+
+@end
+
+@interface CustomView : UIView
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches
+           withEvent:(UIEvent *)event;
 
 @end

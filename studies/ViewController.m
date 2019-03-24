@@ -67,23 +67,23 @@
 - (IBAction)sup:(id)sender {
     [self blur];
     //[self test];
-    //NSLog(@"%@", self.initialView);
+    //NSLog(@"%@", self.initialimage);
     //self.myView.backgroundColor = [UIColor yellowColor];
 }
 
 - (void)blur{
-    if (self.initialView == nil) {
+    if (self.initialImage == nil) {
         NSLog(@"%f", UIScreen.mainScreen.scale);
         //Get a UIImage from the UIView
         UIGraphicsBeginImageContextWithOptions(self.myView.bounds.size, NO, UIScreen.mainScreen.scale);
         //UIGraphicsBeginImageContext(self.myView.bounds.size);
         [self.myView.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
-        self.initialView = viewImage;
+        self.initialImage = viewImage;
         UIGraphicsEndImageContext();
     }
     
-    CIImage *imageToBlur = [CIImage imageWithCGImage:self.initialView.CGImage];
+    CIImage *imageToBlur = [CIImage imageWithCGImage:self.initialImage.CGImage];
 
     //Blur
     CIFilter *gaussianBlurFilter = [CIFilter filterWithName: @"CIGaussianBlur"];
@@ -138,4 +138,13 @@
     //NSLog(@"%@", text);
     return NO;
 }
+@end
+
+@implementation CustomView
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"wow");
+    [super touchesMoved:touches withEvent:event];
+}
+
 @end
